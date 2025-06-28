@@ -10,10 +10,10 @@ import { InvestmentFormModel } from '../app.model';
 })
 export class InvestmentFormComponent {
   formDate: InvestmentFormModel = {
-    initialInvestment: 4,
-    annualInvestment: 7,
-    duration: 3,
-    expectedReturn: 1,
+    initialInvestment: 0,
+    annualInvestment: 0,
+    duration: 0,
+    expectedReturn: 0,
   };
 
   submitForm = output<InvestmentFormModel>();

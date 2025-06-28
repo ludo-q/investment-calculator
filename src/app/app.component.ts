@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { InvestmentFormComponent } from './investment-form/investment-form.component';
 import { InvestmentResultComponent } from './investment-result/investment-result.component';
-import { InvestmentFormModel, InvestmentModel } from './app.model';
+import { InvestmentFormModel } from './app.model';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +15,10 @@ import { InvestmentFormModel, InvestmentModel } from './app.model';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'investment-calculator';
+  title = 'Investment Calculator';
   investmentFormData = signal<InvestmentFormModel | undefined>(undefined);
 
   onSubmitInvestmentForm(formData: InvestmentFormModel) {
     this.investmentFormData.set(formData);
-    console.log(this.investmentFormData());
   }
 }
