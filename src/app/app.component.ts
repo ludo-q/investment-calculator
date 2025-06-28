@@ -1,12 +1,25 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal } from '@angular/core';
+import { HeaderComponent } from './header/header.component';
+import { InvestmentFormComponent } from './investment-form/investment-form.component';
+import { InvestmentResultComponent } from './investment-result/investment-result.component';
+import { InvestmentFormModel, InvestmentModel } from './app.model';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    HeaderComponent,
+    InvestmentFormComponent,
+    InvestmentResultComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'investment-calculator';
+  investmentFormData = signal<InvestmentFormModel | undefined>(undefined);
+
+  onSubmitInvestmentForm(formData: InvestmentFormModel) {
+    this.investmentFormData.set(formData);
+    console.log(this.investmentFormData());
+  }
 }
