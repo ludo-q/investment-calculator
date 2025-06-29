@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InvestmentFormModel } from '../app.model';
 
@@ -9,16 +9,21 @@ import { InvestmentFormModel } from '../app.model';
   styleUrl: './investment-form.component.scss',
 })
 export class InvestmentFormComponent {
-  formDate: InvestmentFormModel = {
-    initialInvestment: 0,
-    annualInvestment: 0,
-    duration: 0,
-    expectedReturn: 0,
-  };
+  formDate = signal(this.defaultFormData);
 
   submitForm = output<InvestmentFormModel>();
 
   onSubmit() {
-    this.submitForm.emit(this.formDate);
+    this.submitForm.emit(this.formDate());
+    this.formDate.set(this.defaultFormData);
+  }
+
+  get defaultFormData(): InvestmentFormModel {
+    return {
+      initialInvestment: 0,
+      annualInvestment: 0,
+      duration: 0,
+      expectedReturn: 0,
+    };
   }
 }

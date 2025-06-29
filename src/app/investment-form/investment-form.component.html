@@ -2,21 +2,23 @@
     <section class="input-group">
         <div>
             <label for="initialInvestment">Initial Investment</label>
-            <input id="initialInvestment" type="number" [(ngModel)]="formDate.initialInvestment" />
+            <input id="initialInvestment" name="initialInvestment" type="number"
+                [(ngModel)]="formDate().initialInvestment" />
         </div>
         <div>
             <label for="annualInvestment">Annual Investment</label>
-            <input id="annualInvestment" type="number" [(ngModel)]="formDate.annualInvestment" />
+            <input id="annualInvestment" name="annualInvestment" type="number"
+                [(ngModel)]="formDate().annualInvestment" />
         </div>
     </section>
     <section class="input-group">
         <div>
             <label for="expectedReturn">Expected Return</label>
-            <input id="expectedReturn" type="number" [(ngModel)]="formDate.expectedReturn" />
+            <input id="expectedReturn" name="expectedReturn" type="number" [(ngModel)]="formDate().expectedReturn" />
         </div>
         <div>
             <label for="duration">Duration</label>
-            <input id="duration" type="number" [(ngModel)]="formDate.duration" />
+            <input id="duration" name="duration" type="number" [(ngModel)]="formDate().duration" />
         </div>
     </section>
     <button type="submit">Calculate</button>
