@@ -1,3 +1,4 @@
+@if (resultData(); as result) {
 <table>
     <thead>
         <tr>
@@ -10,15 +11,18 @@
         </tr>
     </thead>
     <tbody>
-        @for (item of resultData(); track item.id) {
-            <tr>
-                <td>{{item.year}}</td>
-                <td>{{item.interest | currency }}</td>
-                <td>{{item.valueEndOfYear | currency }}</td>
-                <td>{{item.annualInvestment | currency }}</td>
-                <td>{{item.totalInterest | currency }}</td>
-                <td>{{item.totalAmountInvested | currency }}</td>
-            </tr>
+        @for (item of result; track item.id) {
+        <tr>
+            <td>{{item.year}}</td>
+            <td>{{item.interest | currency }}</td>
+            <td>{{item.valueEndOfYear | currency }}</td>
+            <td>{{item.annualInvestment | currency }}</td>
+            <td>{{item.totalInterest | currency }}</td>
+            <td>{{item.totalAmountInvested | currency }}</td>
+        </tr>
         }
     </tbody>
 </table>
+} @else {
+<p>Please enter some value and press <strong>Calculate</strong></p>
+}

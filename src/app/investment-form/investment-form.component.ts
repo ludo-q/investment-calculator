@@ -1,6 +1,7 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { InvestmentFormModel } from '../app.model';
+import { InvestmentFormModel } from '../../core/investment.model';
+import { InvestmentService } from '../../core/investment.service';
 
 @Component({
   selector: 'app-investment-form',
@@ -10,12 +11,13 @@ import { InvestmentFormModel } from '../app.model';
 })
 export class InvestmentFormComponent {
   formDate = signal(this.defaultFormData);
-
-  submitForm = output<InvestmentFormModel>();
+  investmentService = inject(InvestmentService);
 
   onSubmit() {
-    this.submitForm.emit(this.formDate());
-    this.formDate.set(this.defaultFormData);
+    if (this.hasEnteredSomeValue) {
+      this.investmentService.calculateInvestmentResults(this.formDate());
+      this.formDate.set(this.defaultFormData);
+    }
   }
 
   get defaultFormData(): InvestmentFormModel {
@@ -25,5 +27,14 @@ export class InvestmentFormComponent {
       duration: 0,
       expectedReturn: 0,
     };
+  }
+
+  get hasEnteredSomeValue(): boolean {
+    return !!(
+      this.formDate().duration ||
+      this.formDate().expectedReturn ||
+      this.formDate().annualInvestment ||
+      this.formDate().initialInvestment
+    );
   }
 }

@@ -1,8 +1,7 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { InvestmentFormComponent } from './investment-form/investment-form.component';
 import { InvestmentResultComponent } from './investment-result/investment-result.component';
-import { InvestmentFormModel } from './app.model';
 
 @Component({
   selector: 'app-root',
@@ -16,15 +15,4 @@ import { InvestmentFormModel } from './app.model';
 })
 export class AppComponent {
   title = 'Investment Calculator';
-  investmentFormData = signal<InvestmentFormModel | undefined>(undefined);
-  hasEnteredSomeValue = computed(() => !!(
-      this.investmentFormData()?.duration ||
-      this.investmentFormData()?.expectedReturn ||
-      this.investmentFormData()?.annualInvestment ||
-      this.investmentFormData()?.initialInvestment
-    ))
-
-  onSubmitInvestmentForm(formData: InvestmentFormModel) {
-    this.investmentFormData.set(formData);
-  }
 }

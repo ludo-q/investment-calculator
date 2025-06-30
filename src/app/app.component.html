@@ -1,7 +1,3 @@
 <app-header />
-<app-investment-form (submitForm)="onSubmitInvestmentForm($event)"/>
-@if (hasEnteredSomeValue() && investmentFormData(); as formData) {
-    <app-investment-result [formData]="formData"/>
-} @else {
-    <p>Please enter some value and press <strong>Calculate</strong></p>
-}
+<app-investment-form />
+<app-investment-result/>
