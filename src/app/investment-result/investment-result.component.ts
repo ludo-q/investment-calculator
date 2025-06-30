@@ -11,5 +11,5 @@ import { InvestmentService } from '../../core/investment.service';
 })
 export class InvestmentResultComponent {
   invResultService = inject(InvestmentService);
-  resultData = this.invResultService.investmentResults;
+  resultData = this.invResultService.investmentResults.asReadonly();
 }
